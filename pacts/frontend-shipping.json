@@ -1,0 +1,182 @@
+{
+  "consumer": {
+    "name": "frontend"
+  },
+  "interactions": [
+    {
+      "description": "a valid quote request with bulk items",
+      "providerStates": [
+        {
+          "name": "shipping service is ready"
+        }
+      ],
+      "request": {
+        "body": {
+          "numberOfItems": 20
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/getquote"
+      },
+      "response": {
+        "body": {
+          "cost_usd": {
+            "currency_code": "USD",
+            "nanos": 0,
+            "units": 15
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.cost_usd.nanos": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$.cost_usd.units": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a valid quote request with standard items",
+      "providerStates": [
+        {
+          "name": "shipping service is ready"
+        }
+      ],
+      "request": {
+        "body": {
+          "numberOfItems": 3
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/getquote"
+      },
+      "response": {
+        "body": {
+          "cost_usd": {
+            "currency_code": "USD",
+            "nanos": 0,
+            "units": 10
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.cost_usd.nanos": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$.cost_usd.units": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "an invalid quote request with negative items",
+      "providerStates": [
+        {
+          "name": "shipping service is ready"
+        }
+      ],
+      "request": {
+        "body": {
+          "numberOfItems": -1
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/getquote"
+      },
+      "response": {
+        "body": {
+          "error": "Invalid number of items"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 400
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "10.4.1"
+    },
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "shipping"
+  }
+}
