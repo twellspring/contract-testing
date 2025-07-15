@@ -65,9 +65,11 @@ Windsurf went off the rails when adding edge cases. Resulted in lots of learning
 Time spent: 2 hours
 
 ### checkout-accounting
-
-
-
+Coding and testing
+Time spent: 5 hours
+Lots of learning here about the difference between a Pact http and a message contract. 
+- went down a rabbit hole trying to get Pact validate the checkout service's message format.  This meant pulling a message off the queue and validating it.  Problem was trying to generate that message via an api call to the front end had lots of formatting issues that Windsurf could not figure out.
+- Not sure how else to have autoamted testing of the message contract without changing the code. 
 
 
 ## Contract Testing Documentation
