@@ -2,13 +2,11 @@
   "name": "contract-testing",
   "version": "1.0.0",
   "description": "Contract tests for the quotes API using Pact",
-  "main": "quotes.pact.test.ts",
+  "main": "frontend-shipping.pact.spec.ts",
   "scripts": {
-    "test": "jest",
-    "test:pact": "jest quotes.pact.test.ts",
-    "verify:provider": "ts-node verify-provider.ts",
-    "verify:shipping": "ts-node verify-shipping-provider.ts",
-    "start:mock-shipping": "ts-node mock-shipping-service.ts"
+    "contract:all": "npm run contract:test && npm run contract:verify",
+    "contract:test": "jest",
+    "contract:verify": "for file in $(find . -name '*.verify.ts'); do ts-node $file || exit 1; done"
   },
   "devDependencies": {
     "@pact-foundation/pact": "^10.0.0",
