@@ -78,6 +78,11 @@ Lots of learning here about the difference between a Pact http and a message con
 
 This project implements contract testing between a frontend service and a shipping service using the Pact framework. Contract testing ensures that both services maintain compatible APIs as they evolve independently.
 
+### Assumptions
+
+- Contract testing is housed in a dedicated repo (not in each app's repo).
+- Don't change the app code. This might be helpful for a robust contract testing setup, but not for a quick exercise like this.
+
 ### Contract Testing Principles
 
 1. **Consumer-Driven Contracts**: The consumer (frontend) defines what it expects from the provider (shipping service).
