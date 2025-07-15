@@ -55,8 +55,17 @@ Also had to deal with windsurf authentication error (fixed by changing model fro
 Time spent: 40 minutes
 
 ## Windsurf Coding
+
+### frontend-shipping
 Coding and testing
 Time spent: 50 minutes
+
+### frontend-shipping edge cases & research
+Windsurf went off the rails when adding edge cases. Resulted in lots of learning how contract testing works.  
+Time spent: 2 hours
+
+### checkout-accounting
+
 
 
 
@@ -73,6 +82,19 @@ This project implements contract testing between a frontend service and a shippi
 2. **Source of Truth**: The contract file is the single source of truth for the API.
 3. **Independent Verification**: Each service verifies its conformance to the contract independently.
 4. **No Mocks for Verification**: Provider verification must be done against the actual provider implementation, not a mock.
+
+### Contract Roles Table
+
+| Contract                      | Pact Consumer (writes test) | Pact Provider (verified) | Producer (sends data)         | Consumer (receives data)           |
+|-------------------------------|-----------------------------|-------------------------|-------------------------------|------------------------------------|
+| frontend-shipping (HTTP)      | frontend                    | shipping                | frontend (sends HTTP request) | shipping (receives request, sends response) |
+| checkout-accounting (message) | accounting                  | checkout                | checkout (sends message)      | accounting (receives message)      |
+
+**Definitions:**
+- **Pact Consumer:** Service that initiates the interaction and writes the contract test.
+- **Pact Provider:** Service that is verified against the contract.
+- **Producer:** Service that sends the request (HTTP) or message (queue).
+- **Consumer:** Service that receives the response (HTTP) or message (queue).
 
 ### Project Structure
 

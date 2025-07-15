@@ -1,0 +1,191 @@
+{
+  "consumer": {
+    "name": "checkout"
+  },
+  "messages": [
+    {
+      "contents": {
+        "items": [
+          {
+            "cost": {
+              "currency_code": "USD",
+              "nanos": 0,
+              "units": 20
+            },
+            "item": {
+              "product_id": "SKU-001",
+              "quantity": 2
+            }
+          }
+        ],
+        "order_id": "ORDER-123",
+        "shipping_address": {
+          "city": "Mountain View",
+          "country": "USA",
+          "state": "CA",
+          "street_address": "123 Main St",
+          "zip_code": "94043"
+        },
+        "shipping_cost": {
+          "currency_code": "USD",
+          "nanos": 500000000,
+          "units": 12
+        },
+        "shipping_tracking_id": "TRACK-456"
+      },
+      "description": "a completed order from checkout",
+      "matchingRules": {
+        "body": {
+          "$.items": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type",
+                "min": 1
+              }
+            ]
+          },
+          "$.items[*].cost.currency_code": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.items[*].cost.nanos": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.items[*].cost.units": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.items[*].item.product_id": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.items[*].item.quantity": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.order_id": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.shipping_address.city": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.shipping_address.country": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.shipping_address.state": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.shipping_address.street_address": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.shipping_address.zip_code": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.shipping_cost.currency_code": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.shipping_cost.nanos": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.shipping_cost.units": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.shipping_tracking_id": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          }
+        }
+      },
+      "metadata": {
+        "content-type": "application/json",
+        "contentType": "application/json"
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "10.4.1"
+    },
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "accounting"
+  }
+}
